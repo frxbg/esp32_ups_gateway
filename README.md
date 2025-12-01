@@ -213,9 +213,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@yourtwitter](https://twitter.com/yourtwitter) - email@example.com
+frxbg - [@X](https://x.com/039873324e35400)
 
-Project Link: [https://github.com/yourusername/esp32-ups-gateway](https://github.com/yourusername/esp32-ups-gateway)
+Project Link: [https://github.com/frxbg/esp32-ups-gateway](https://github.com/frxbg/esp32-ups-gateway)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
