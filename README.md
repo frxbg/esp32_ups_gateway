@@ -141,7 +141,7 @@ You will need the following hardware and software:
 
 The device hosts a Single Page Application (SPA) accessible via WiFi.
 
-1.  Connect to the Access Point: **SSID**: `UPS_Gateway_AP`, **Pass**: `frigotehnica`.
+1.  Connect to the Access Point: **SSID**: `UPS_Gateway_AP`, **Pass**: `admin1234`.
 2.  Navigate to `http://192.168.4.1`.
 3.  **Dashboard Tab**: View real-time gauges for Battery, Load, and Voltages.
 4.  **WiFi Tab**: Scan for local networks and connect the device to your home WiFi.
