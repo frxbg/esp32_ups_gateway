@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CyberPower UPS Monitor (DEMO)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #111827;
+            --accent-color: #38bdf8;
+            --accent-color-soft: rgba(56, 189, 248, 0.15);
+            --text-color: #e5e7eb;
+            --text-color-dark: #102045;
+            --text-muted: #aac2ee;
+            --border-color: #1f2937;
+            --shadow-soft: 0 20px 45px rgba(15, 23, 42, 0.7);
+            --danger-color: #ef4444;
+            --warning-color: #f97316;
+            --success-color: #22c55e;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at top left, #1e293b 0, #020617 45%);
+            color: var(--text-color);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .header {
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .header-title h1 {
+            font-size: 28px;
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-title p {
+            color: var(--text-muted);
+            margin-top: 4px;
+            margin-bottom: 0;
+            font-size: 14px;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 8px;
+            background: rgba(15, 23, 42, 0.6);
+            padding: 4px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .tab-btn-reboot {
+            background: var(--danger-color);
+            color: #f7f4f4;
+            border-radius: 40px;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-color);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-btn.active {
+            background: var(--accent-color-soft);
+            color: var(--accent-color);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Common Components */
+        .card {
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.88));
+            border-radius: 18px;
+            padding: 18px 18px 16px;
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            box-shadow: var(--shadow-soft);
+            margin-bottom: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .card-title h2 {
+            font-size: 18px;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .card-title span {
+            font-size: 12px;
+            color: var(--text-muted);
+            display: block;
+            margin-top: 2px;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 2fr 1.2fr;
+            gap: 16px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        @media (max-width: 900px) {
+
+            .grid-2,
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Battery Visual */
+        .battery-visual {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .battery {
+            width: 140px;
+            height: 70px;
+            border-radius: 12px;
+            border: 2px solid rgba(148, 163, 184, 0.7);
+            padding: 5px;
+            position: relative;
+            background: rgba(15, 23, 42, 0.5);
+        }
+
+        .battery::after {
+            content: "";
+            position: absolute;
+            right: -8px;
+            top: 28%;
+            width: 6px;
+            height: 30px;
+            border-radius: 0 4px 4px 0;
+            background: rgba(148, 163, 184, 0.7);
+        }
+
+        .battery-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 6px;
+            background: linear-gradient(90deg, #ef4444, #eab308, #22c55e);
+            transition: width 0.5s ease;
+        }
+
+        .battery-percent {
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .battery-meta {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Metrics */
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .metric-row:last-child {
+            border-bottom: none;
+        }
+
+        .metric-label {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .metric-value {
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-color);
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .form-select option {
+            background: #020617;
+            color: var(--text-color);
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            border-radius: 8px;
+            color: var(--text-color);
+            font-family: inherit;
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: var(--accent-color);
+            color: #0f172a;
+        }
+
+        .btn-primary:hover {
+            background: #0ea5e9;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        /* WiFi List */
+        .wifi-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .wifi-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .wifi-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .wifi-item.selected {
+            border: 1px solid var(--accent-color);
+            background: var(--accent-color-soft);
+        }
+
+        .wifi-ssid {
+            font-weight: 500;
+        }
+
+        .wifi-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+            display: flex;
+            gap: 12px;
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 99px;
+            font-size: 12px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .status-badge.online {
+            background: rgba(34, 197, 94, 0.15);
+            color: #4ade80;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .status-badge.offline {
+            background: rgba(239, 68, 68, 0.15);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <div class="header-title">
+                <h1>🔋 UPS Gateway (DEMO)</h1>
+                <p>CyberPower UPS Monitoring System - Simulated Mode</p>
+            </div>
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('dashboard')">Dashboard</button>
+                <button class="tab-btn" onclick="showTab('wifi')">WiFi</button>
+                <button class="tab-btn" onclick="showTab('modbus')">Modbus</button>
+                <button class="tab-btn-reboot" onclick="reboot()">Reboot</button>
+            </div>
+        </div>
+
+        <!-- DASHBOARD TAB -->
+        <div id="dashboard" class="tab-content active">
+            <div class="grid-2">
+                <!-- Main Status -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <h2>Battery Status</h2>
+                            <span>Real-time power monitoring</span>
+                        </div>
+                        <div id="ups-status-badge" class="status-badge offline">Connecting...</div>
+                    </div>
+
+                    <div class="battery-visual">
+                        <div class="battery">
+                            <div id="battery-fill" class="battery-fill"></div>
+                        </div>
+                        <div>
+                            <div id="battery-percent" class="battery-percent">--%</div>
+                            <div class="battery-meta">Runtime: <span id="battery-runtime">-- min</span></div>
+                        </div>
+                    </div>
+
+                    <div class="grid-3" style="margin-top: 24px;">
+                        <div>
+                            <div class="metric-label">Input Voltage</div>
+                            <div class="metric-value"><span id="input-voltage">--</span> V</div>
+                        </div>
+                        <div>
+                            <div class="metric-label">Output Voltage</div>
+                            <div class="metric-value"><span id="output-voltage">--</span> V</div>
+                        </div>
+                        <div>
+                            <div class="metric-label">Load</div>
+                            <div class="metric-value"><span id="ups-load">--</span> %</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Device Info -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <h2>Device Info</h2>
+                            <span>System details</span>
+                        </div>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Model</span>
+                        <span class="metric-value" id="device-model">--</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Status</span>
+                        <span class="metric-value" id="ups-status-text">--</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Beeper</span>
+                        <span class="metric-value" id="beeper-status">--</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">WiFi IP</span>
+                        <span class="metric-value" id="wifi-ip">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <h2>Input</h2>
+                        </div>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Nominal</span>
+                        <span class="metric-value"><span id="input-nominal">--</span> V</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Transfer High</span>
+                        <span class="metric-value"><span id="transfer-high">--</span> V</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Transfer Low</span>
+                        <span class="metric-value"><span id="transfer-low">--</span> V</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <h2>Battery</h2>
+                        </div>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Voltage</span>
+                        <span class="metric-value"><span id="batt-voltage">--</span> V</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Nominal</span>
+                        <span class="metric-value"><span id="batt-nominal">--</span> V</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Low Warning</span>
+                        <span class="metric-value"><span id="batt-low">--</span> %</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <h2>Timers</h2>
+                        </div>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Shutdown Delay</span>
+                        <span class="metric-value"><span id="timer-shutdown">--</span> s</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Startup Delay</span>
+                        <span class="metric-value"><span id="timer-start">--</span> s</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WIFI TAB -->
+        <div id="wifi" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <h2>Available Networks</h2>
+                            <span>Select a network to connect</span>
+                        </div>
+                        <button class="btn btn-secondary" onclick="scanWifi()">Scan</button>
+                    </div>
+                    <div id="wifi-list" class="wifi-list">
+                        <div style="padding: 20px; text-align: center; color: var(--text-muted);">Click Scan to find
+                            networks</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <h2>Connect</h2>
+                            <span>Enter credentials</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">SSID</label>
+                        <input type="text" id="wifi-ssid" class="form-input" placeholder="Select from list or type">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" id="wifi-pass" class="form-input" placeholder="Enter password">
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%" onclick="connectWifi()">Connect</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODBUS TAB -->
+        <div id="modbus" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h2>Modbus Configuration</h2>
+                        <span>RTU Slave Settings</span>
+                    </div>
+                </div>
+                <div class="grid-4">
+                    <div class="form-group">
+                        <label class="form-label">Slave Address</label>
+                        <input type="number" id="mb-addr" class="form-input" min="1" max="247">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Baud Rate</label>
+                        <select id="mb-baud" class="form-select">
+                            <option value="9600">9600</option>
+                            <option value="19200">19200</option>
+                            <option value="38400">38400</option>
+                            <option value="57600">57600</option>
+                            <option value="115200">115200</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Parity</label>
+                        <select id="mb-parity" class="form-select">
+                            <option value="0">None</option>
+                            <option value="1">Odd</option>
+                            <option value="2">Even</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Stop Bits</label>
+                        <select id="mb-stopbits" class="form-select">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: flex-end;">
+                    <button class="btn btn-primary" onclick="saveModbus()">Save Settings</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h2>Register Map</h2>
+                        <span>Input Registers (Read Only)</span>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Address</th>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Units</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>0</td>
+                                <td>Battery Charge</td>
+                                <td>uint16</td>
+                                <td>%</td>
+                                <td>Battery capacity remaining (0-100)</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Battery Runtime</td>
+                                <td>uint16</td>
+                                <td>s</td>
+                                <td>Estimated battery runtime (seconds)</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Input Voltage</td>
+                                <td>uint16</td>
+                                <td>V</td>
+                                <td>Mains input voltage</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Output Voltage</td>
+                                <td>uint16</td>
+                                <td>V</td>
+                                <td>UPS output voltage</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>UPS Load</td>
+                                <td>uint16</td>
+                                <td>%</td>
+                                <td>UPS load percentage (0-100)</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Status Word</td>
+                                <td>uint16</td>
+                                <td>Bitmask</td>
+                                <td>Status bits (AC, Charging, Discharging, etc.)</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Battery Runtime Low</td>
+                                <td>uint16</td>
+                                <td>s</td>
+                                <td>Low runtime threshold</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Battery Design Capacity</td>
+                                <td>uint16</td>
+                                <td>%</td>
+                                <td>Design capacity</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>Battery Charge Warning</td>
+                                <td>uint16</td>
+                                <td>%</td>
+                                <td>Warning threshold</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>Battery Charge Low</td>
+                                <td>uint16</td>
+                                <td>%</td>
+                                <td>Critical low threshold</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>Battery Voltage</td>
+                                <td>uint16</td>
+                                <td>0.1 V</td>
+                                <td>Battery bank voltage (dV)</td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>Battery Voltage Nominal</td>
+                                <td>uint16</td>
+                                <td>0.1 V</td>
+                                <td>Nominal battery voltage (dV)</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>Input Voltage Nominal</td>
+                                <td>uint16</td>
+                                <td>V</td>
+                                <td>Nominal input voltage</td>
+                            </tr>
+                            <tr>
+                                <td>13</td>
+                                <td>Input Transfer Low</td>
+                                <td>uint16</td>
+                                <td>V</td>
+                                <td>Low transfer voltage threshold</td>
+                            </tr>
+                            <tr>
+                                <td>14</td>
+                                <td>Input Transfer High</td>
+                                <td>uint16</td>
+                                <td>V</td>
+                                <td>High transfer voltage threshold</td>
+                            </tr>
+                            <tr>
+                                <td>15</td>
+                                <td>Beeper Mode</td>
+                                <td>uint16</td>
+                                <td>Enum</td>
+                                <td>1: Disabled, 2: Enabled, 3: Muted</td>
+                            </tr>
+                            <tr>
+                                <td>16</td>
+                                <td>Test Code</td>
+                                <td>uint16</td>
+                                <td>Enum</td>
+                                <td>Battery test result code</td>
+                            </tr>
+                            <tr>
+                                <td>17</td>
+                                <td>Timer Shutdown</td>
+                                <td>int16</td>
+                                <td>s</td>
+                                <td>Shutdown timer</td>
+                            </tr>
+                            <tr>
+                                <td>18</td>
+                                <td>Timer Start</td>
+                                <td>int16</td>
+                                <td>s</td>
+                                <td>Startup timer</td>
+                            </tr>
+                            <tr>
+                                <td>19</td>
+                                <td>Real Power Nominal</td>
+                                <td>uint16</td>
+                                <td>W</td>
+                                <td>Nominal real power</td>
+                            </tr>
+                            <tr>
+                                <td>32</td>
+                                <td>Beeper Control</td>
+                                <td>uint16</td>
+                                <td>Enum</td>
+                                <td>Write 1-3 to control beeper (R/W)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Tab Logic ---
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            document.querySelector(`button[onclick="showTab('${tabId}')"]`).classList.add('active');
+        }
+
+        // --- Simulated Data Logic ---
+
+        // Helper to generate random integer between min and max
+        function randomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+        // Helper to generate random float
+        function randomFloat(min, max, decimals = 1) {
+            const val = Math.random() * (max - min) + min;
+            return parseFloat(val.toFixed(decimals));
+        }
+
+        function fetchStatus() {
+            // Simulate API latency
+            setTimeout(() => {
+                // Generate simulated data
+                const batteryCharge = randomInt(85, 100);
+                const inputVoltage = randomInt(225, 235);
+                const outputVoltage = inputVoltage; // Line interactive usually matches input
+                const load = randomInt(10, 25);
+
+                const data = {
+                    'battery.charge': batteryCharge,
+                    'battery.runtime': batteryCharge * 30, // Approx 30s per percent
+                    'input.voltage': inputVoltage,
+                    'output.voltage': outputVoltage,
+                    'ups.load': load,
+
+                    'device.model': 'CP1500PFCLCD',
+                    'ups.status': 'OL CHRG', // Online, Charging
+                    'ups.beeper.status': 'enabled',
+
+                    'input.voltage.nominal': 230,
+                    'input.transfer.high': 260,
+                    'input.transfer.low': 170,
+
+                    'battery.voltage': randomFloat(26.5, 27.5),
+                    'battery.voltage.nominal': 24.0,
+                    'battery.charge.low': 20,
+
+                    'ups.timer_shutdown_s': -1,
+                    'ups.timer_start_s': -1,
+                    'ups.dev_connected': true
+                };
+
+                // Update Dashboard
+                updateElement('battery-percent', data['battery.charge'] + '%');
+                updateElement('battery-runtime', (data['battery.runtime'] / 60).toFixed(0) + ' min');
+                updateElement('input-voltage', data['input.voltage']);
+                updateElement('output-voltage', data['output.voltage']);
+                updateElement('ups-load', data['ups.load']);
+
+                updateElement('device-model', data['device.model']);
+                updateElement('ups-status-text', data['ups.status']);
+                updateElement('beeper-status', data['ups.beeper.status']);
+
+                updateElement('input-nominal', data['input.voltage.nominal']);
+                updateElement('transfer-high', data['input.transfer.high']);
+                updateElement('transfer-low', data['input.transfer.low']);
+
+                updateElement('batt-voltage', data['battery.voltage']);
+                updateElement('batt-nominal', data['battery.voltage.nominal']);
+                updateElement('batt-low', data['battery.charge.low']);
+
+                updateElement('timer-shutdown', data['ups.timer_shutdown_s'] == -1 ? '--' : data['ups.timer_shutdown_s']);
+                updateElement('timer-start', data['ups.timer_start_s'] == -1 ? '--' : data['ups.timer_start_s']);
+
+                // Visuals
+                const fill = document.getElementById('battery-fill');
+                if (fill) fill.style.width = data['battery.charge'] + '%';
+
+                const badge = document.getElementById('ups-status-badge');
+                if (badge) {
+                    if (data['ups.dev_connected']) {
+                        badge.className = 'status-badge online';
+                        badge.innerText = 'Online (Simulated)';
+                    } else {
+                        badge.className = 'status-badge offline';
+                        badge.innerText = 'Disconnected';
+                    }
+                }
+
+                // Simulate WiFi IP
+                updateElement('wifi-ip', '192.168.1.105');
+
+            }, 200); // 200ms simulated latency
+        }
+
+        function updateElement(id, value) {
+            const el = document.getElementById(id);
+            if (el) el.innerText = value;
+        }
+
+        // --- WiFi Logic ---
+        function scanWifi() {
+            const list = document.getElementById('wifi-list');
+            list.innerHTML = '<div style="padding:20px; text-align:center;">Scanning...</div>';
+
+            // Simulate scan delay
+            setTimeout(() => {
+                const data = [
+                    { ssid: 'Home_Network', rssi: -45, auth: 1 },
+                    { ssid: 'Guest_WiFi', rssi: -65, auth: 1 },
+                    { ssid: 'IoT_Devices', rssi: -72, auth: 1 },
+                    { ssid: 'Free_WiFi', rssi: -85, auth: 0 }
+                ];
+
+                list.innerHTML = '';
+                if (data.length === 0) {
+                    list.innerHTML = '<div style="padding:20px; text-align:center;">No networks found</div>';
+                    return;
+                }
+
+                data.forEach(net => {
+                    const item = document.createElement('div');
+                    item.className = 'wifi-item';
+                    item.innerHTML = `
+                        <div class="wifi-ssid">${net.ssid}</div>
+                        <div class="wifi-meta">
+                            <span>📶 ${net.rssi} dBm</span>
+                            <span>🔒 ${net.auth === 0 ? 'Open' : 'Secured'}</span>
+                        </div>
+                    `;
+                    item.onclick = () => {
+                        document.querySelectorAll('.wifi-item').forEach(i => i.classList.remove('selected'));
+                        item.classList.add('selected');
+                        document.getElementById('wifi-ssid').value = net.ssid;
+                    };
+                    list.appendChild(item);
+                });
+            }, 1500); // 1.5s scan duration
+        }
+
+        function connectWifi() {
+            const ssid = document.getElementById('wifi-ssid').value;
+            const pass = document.getElementById('wifi-pass').value;
+
+            if (!ssid) {
+                alert('Please select or enter an SSID');
+                return;
+            }
+
+            if (!confirm(`Connect to ${ssid}? Device will reboot.`)) return;
+
+            // Simulate connection
+            setTimeout(() => {
+                alert(`Simulated: Credentials for ${ssid} saved. Device would reboot now.`);
+            }, 500);
+        }
+
+        // --- Modbus Logic ---
+        function loadModbus() {
+            // Simulated config
+            const data = {
+                slave_addr: 1,
+                baudrate: 9600,
+                parity: 0, // None
+                stop_bits: 1
+            };
+
+            document.getElementById('mb-addr').value = data.slave_addr;
+            document.getElementById('mb-baud').value = data.baudrate;
+            document.getElementById('mb-parity').value = data.parity;
+            document.getElementById('mb-stopbits').value = data.stop_bits;
+        }
+
+        function reboot() {
+            if (!confirm('Device will reboot.')) return;
+            alert('Simulated: Device rebooting...');
+        }
+
+        function saveModbus() {
+            const config = {
+                slave_addr: parseInt(document.getElementById('mb-addr').value),
+                baudrate: parseInt(document.getElementById('mb-baud').value),
+                parity: parseInt(document.getElementById('mb-parity').value),
+                stop_bits: parseInt(document.getElementById('mb-stopbits').value)
+            };
+
+            alert(`Simulated: Modbus config saved:\n${JSON.stringify(config, null, 2)}`);
+        }
+
+        // Init
+        setInterval(fetchStatus, 3000);
+        fetchStatus();
+        loadModbus();
+
+    </script>
+
+</body>
+
+</html>
