@@ -26,7 +26,7 @@
     <a href="#usage"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://htmlpreview.github.io/?https://github.com/frxbg/esp32_ups_gateway/blob/main/assets/demo.html">View Demo</a>
+    <a href="https://raw.githack.com/frxbg/esp32_ups_gateway/refs/heads/main/assets/demo.html">View Demo</a>
     ·
     <a href="#issues">Report Bug</a>
     ·
