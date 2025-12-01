@@ -63,7 +63,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![Product Screenshot](https://placehold.co/600x400/111827/38bdf8?text=Dashboard+Preview)
+![Product Screenshot](https://github.com/frxbg/esp32_ups_gateway/blob/main/assets/Dashboard_demo.png)
 
 There are many UPS monitoring solutions out there, but most require a dedicated PC or Raspberry Pi. The **ESP32 UPS Gateway** is a microcontroller-based solution that bridges the gap between your USB-connected UPS and your industrial or home automation network.
 
