@@ -1,0 +1,434 @@
+{
+  "device": {
+    "vendor_id": "0x0764",
+    "product_id": "0x0601",
+    "interface": 0,
+    "note": "offset 0 = report_id byte in response"
+  },
+  "reports": [
+    {
+      "id": 3,
+      "name": "ups.power_summary.idevice_chemistry",
+      "get": {
+        "report_type": "feature",
+        "report_id": 3,
+        "length": 2
+      },
+      "response": {
+        "length": 2,
+        "fields": [
+          {
+            "name": "battery.chemistry_index",
+            "offset": 1,
+            "size": 1,
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "name": "battery_capacity_thresholds",
+      "get": {
+        "report_type": "feature",
+        "report_id": 7,
+        "length": 7
+      },
+      "response": {
+        "length": 7,
+        "fields": [
+          {
+            "name": "battery.design_capacity",
+            "offset": 1,
+            "size": 1,
+            "type": "u8"
+          },
+          {
+            "name": "battery.cap_granularity_1",
+            "offset": 2,
+            "size": 1,
+            "type": "u8"
+          },
+          {
+            "name": "battery.cap_granularity_2",
+            "offset": 3,
+            "size": 1,
+            "type": "u8"
+          },
+          {
+            "name": "battery.charge.warning",
+            "offset": 4,
+            "size": 1,
+            "type": "u8"
+          },
+          {
+            "name": "battery.charge.low",
+            "offset": 5,
+            "size": 1,
+            "type": "u8"
+          },
+          {
+            "name": "battery.full_charge_capacity",
+            "offset": 6,
+            "size": 1,
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "name": "battery_charge_and_runtime",
+      "get": {
+        "report_type": "feature",
+        "report_id": 8,
+        "length": 6
+      },
+      "response": {
+        "length": 6,
+        "fields": [
+          {
+            "name": "battery.charge",
+            "offset": 1,
+            "size": 1,
+            "type": "u8"
+          },
+          {
+            "name": "battery.runtime_s",
+            "offset": 2,
+            "size": 2,
+            "type": "u16_le"
+          },
+          {
+            "name": "battery.runtime_low",
+            "offset": 4,
+            "size": 2,
+            "type": "u16_le"
+          }
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "name": "battery_nominal_voltage",
+      "get": {
+        "report_type": "feature",
+        "report_id": 9,
+        "length": 2
+      },
+      "response": {
+        "length": 2,
+        "fields": [
+          {
+            "name": "battery.voltage_nominal_dV",
+            "offset": 1,
+            "size": 1,
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "name": "battery_voltage",
+      "get": {
+        "report_type": "feature",
+        "report_id": 10,
+        "length": 2
+      },
+      "response": {
+        "length": 2,
+        "fields": [
+          {
+            "name": "battery.voltage_dV",
+            "offset": 1,
+            "size": 1,
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "name": "power_summary_status_bits",
+      "get": {
+        "report_type": "input",
+        "report_id": 11,
+        "length": 2
+      },
+      "response": {
+        "length": 2,
+        "fields": [
+          {
+            "name": "status.ac_present",
+            "offset": 1,
+            "bit": 0,
+            "type": "bool"
+          },
+          {
+            "name": "status.charging",
+            "offset": 1,
+            "bit": 1,
+            "type": "bool"
+          },
+          {
+            "name": "status.discharging",
+            "offset": 1,
+            "bit": 2,
+            "type": "bool"
+          },
+          {
+            "name": "status.below_capacity_limit",
+            "offset": 1,
+            "bit": 3,
+            "type": "bool"
+          },
+          {
+            "name": "status.fully_charged",
+            "offset": 1,
+            "bit": 4,
+            "type": "bool"
+          },
+          {
+            "name": "status.time_limit_expired",
+            "offset": 1,
+            "bit": 5,
+            "type": "bool"
+          }
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "name": "beeper_mode",
+      "get": {
+        "report_type": "feature",
+        "report_id": 12,
+        "length": 2
+      },
+      "response": {
+        "length": 2,
+        "fields": [
+          {
+            "name": "ups.beeper.mode",
+            "offset": 1,
+            "size": 1,
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "id": 14,
+      "name": "input_nominal_voltage",
+      "get": {
+        "report_type": "feature",
+        "report_id": 14,
+        "length": 2
+      },
+      "response": {
+        "length": 2,
+        "fields": [
+          {
+            "name": "input.voltage_nominal_V",
+            "offset": 1,
+            "size": 1,
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "id": 15,
+      "name": "input_voltage",
+      "get": {
+        "report_type": "feature",
+        "report_id": 15,
+        "length": 2
+      },
+      "response": {
+        "length": 2,
+        "fields": [
+          {
+            "name": "input.voltage_V",
+            "offset": 1,
+            "size": 1,
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "id": 16,
+      "name": "input_transfer_limits",
+      "get": {
+        "report_type": "feature",
+        "report_id": 16,
+        "length": 5
+      },
+      "response": {
+        "length": 5,
+        "fields": [
+          {
+            "name": "input.transfer_low_V",
+            "offset": 1,
+            "size": 2,
+            "type": "u16_le"
+          },
+          {
+            "name": "input.transfer_high_V",
+            "offset": 3,
+            "size": 2,
+            "type": "u16_le"
+          }
+        ]
+      }
+    },
+    {
+      "id": 18,
+      "name": "output_voltage",
+      "get": {
+        "report_type": "feature",
+        "report_id": 18,
+        "length": 2
+      },
+      "response": {
+        "length": 2,
+        "fields": [
+          {
+            "name": "output.voltage_V",
+            "offset": 1,
+            "size": 1,
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "id": 19,
+      "name": "output_percent_load",
+      "get": {
+        "report_type": "feature",
+        "report_id": 19,
+        "length": 2
+      },
+      "response": {
+        "length": 2,
+        "fields": [
+          {
+            "name": "ups.load_percent",
+            "offset": 1,
+            "size": 1,
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "id": 20,
+      "name": "battery_test_status",
+      "get": {
+        "report_type": "feature",
+        "report_id": 20,
+        "length": 2
+      },
+      "response": {
+        "length": 2,
+        "fields": [
+          {
+            "name": "ups.test.code",
+            "offset": 1,
+            "size": 1,
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "id": 21,
+      "name": "delay_before_shutdown",
+      "get": {
+        "report_type": "feature",
+        "report_id": 21,
+        "length": 3
+      },
+      "response": {
+        "length": 3,
+        "fields": [
+          {
+            "name": "ups.timer_shutdown_s",
+            "offset": 1,
+            "size": 2,
+            "type": "i16_le"
+          }
+        ]
+      }
+    },
+    {
+      "id": 22,
+      "name": "delay_before_startup",
+      "get": {
+        "report_type": "feature",
+        "report_id": 22,
+        "length": 3
+      },
+      "response": {
+        "length": 3,
+        "fields": [
+          {
+            "name": "ups.timer_start_s",
+            "offset": 1,
+            "size": 2,
+            "type": "i16_le"
+          }
+        ]
+      }
+    },
+    {
+      "id": 17,
+      "name": "output_flags_boost_overload",
+      "get": {
+        "report_type": "feature",
+        "report_id": 23,
+        "length": 2
+      },
+      "response": {
+        "length": 2,
+        "fields": [
+          {
+            "name": "status.boost",
+            "offset": 1,
+            "bit": 0,
+            "type": "bool"
+          },
+          {
+            "name": "status.overload",
+            "offset": 1,
+            "bit": 1,
+            "type": "bool"
+          }
+        ]
+      }
+    },
+    {
+      "id": 24,
+      "name": "config_active_power",
+      "get": {
+        "report_type": "feature",
+        "report_id": 24,
+        "length": 3
+      },
+      "response": {
+        "length": 3,
+        "fields": [
+          {
+            "name": "ups.realpower_nominal_W_raw",
+            "offset": 1,
+            "size": 2,
+            "type": "u16_le"
+          }
+        ]
+      }
+    }
+  ]
+}
