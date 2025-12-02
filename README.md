@@ -113,7 +113,7 @@ You will need the following hardware and software:
 
 1.  **Clone the repo**
     ```sh
-    git clone https://github.com/yourusername/esp32-ups-gateway.git
+    git clone https://github.com/frxbg/esp32-ups-gateway.git
     cd esp32-ups-gateway
     ```
 2.  **Set up environment** (if not already done)
