@@ -6,10 +6,6 @@
 *** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
 -->
 [![Version][version-shield]][version-url]
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 
 <br />
@@ -63,7 +59,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![Product Screenshot](https://placehold.co/600x400/111827/38bdf8?text=Dashboard+Preview)
+![Product Screenshot](https://github.com/frxbg/esp32_ups_gateway/blob/main/assets/Dashboard_demo.png)
 
 There are many UPS monitoring solutions out there, but most require a dedicated PC or Raspberry Pi. The **ESP32 UPS Gateway** is a microcontroller-based solution that bridges the gap between your USB-connected UPS and your industrial or home automation network.
 
@@ -230,16 +226,8 @@ Project Link: [https://github.com/frxbg/esp32-ups-gateway](https://github.com/fr
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [version-shield]: https://img.shields.io/badge/version-1.0.0-blue.svg?style=for-the-badge
 [version-url]: #
-[contributors-shield]: https://img.shields.io/github/contributors/frxbg/esp32-ups-gateway.svg?style=for-the-badge
-[contributors-url]: https://github.com/frxbg/esp32-ups-gateway/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/frxbg/esp32-ups-gateway.svg?style=for-the-badge
-[forks-url]: https://github.com/frxbg/esp32-ups-gateway/network/members
-[stars-shield]: https://img.shields.io/github/stars/frxbg/esp32-ups-gateway.svg?style=for-the-badge
-[stars-url]: https://github.com/frxbg/esp32-ups-gateway/stargazers
-[issues-shield]: https://img.shields.io/github/issues/frxbg/esp32-ups-gateway.svg?style=for-the-badge
-[issues-url]: https://github.com/frxbg/esp32-ups-gateway/issues
 [license-shield]: https://img.shields.io/github/license/frxbg/esp32-ups-gateway.svg?style=for-the-badge
-[license-url]: https://github.com/frxbg/esp32-ups-gateway/blob/master/LICENSE
+[license-url]: https://github.com/frxbg/esp32-ups-gateway/blob/main/LICENSE
 [ESP-IDF]: https://img.shields.io/badge/ESP--IDF-E7352C?style=for-the-badge&logo=espressif&logoColor=white
 [ESP-IDF-url]: https://docs.espressif.com/projects/esp-idf/en/latest/esp32/
 [C]: https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white
