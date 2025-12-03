@@ -6,11 +6,11 @@
 *** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
 -->
 [![Version][version-shield]][version-url]
-[![MIT License][license-shield]][https://github.com/frxbg/esp32_ups_gateway/blob/main/LICENSE]
+[![MIT License][license-shield]][license-url]
 
 <br />
 <div align="center">
-  <a href="https://github.com/yourusername/esp32-ups-gateway">
+  <a href="https://github.com/frxbg/esp32-ups-gateway">
     <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Battery.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -182,7 +182,7 @@ Integrate with Home Assistant or Industrial PLCs.
 - [ ] Email/Telegram Notifications
 - [ ] Historical Data Logging (SD Card)
 
-See the [open issues](https://github.com/yourusername/esp32-ups-gateway/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/frxbg/esp32-ups-gateway/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -228,16 +228,16 @@ Project Link: [https://github.com/frxbg/esp32-ups-gateway](https://github.com/fr
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [version-shield]: https://img.shields.io/badge/version-1.0.0-blue.svg?style=for-the-badge
 [version-url]: #
-[contributors-shield]: https://img.shields.io/github/contributors/yourusername/esp32-ups-gateway.svg?style=for-the-badge
-[contributors-url]: https://github.com/yourusername/esp32-ups-gateway/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/yourusername/esp32-ups-gateway.svg?style=for-the-badge
-[forks-url]: https://github.com/yourusername/esp32-ups-gateway/network/members
-[stars-shield]: https://img.shields.io/github/stars/yourusername/esp32-ups-gateway.svg?style=for-the-badge
-[stars-url]: https://github.com/yourusername/esp32-ups-gateway/stargazers
-[issues-shield]: https://img.shields.io/github/issues/yourusername/esp32-ups-gateway.svg?style=for-the-badge
-[issues-url]: https://github.com/yourusername/esp32-ups-gateway/issues
-[license-shield]: https://img.shields.io/github/license/yourusername/esp32-ups-gateway.svg?style=for-the-badge
-[license-url]: https://github.com/yourusername/esp32-ups-gateway/blob/master/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/frxbg/esp32-ups-gateway.svg?style=for-the-badge
+[contributors-url]: https://github.com/frxbg/esp32-ups-gateway/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/frxbg/esp32-ups-gateway.svg?style=for-the-badge
+[forks-url]: https://github.com/frxbg/esp32-ups-gateway/network/members
+[stars-shield]: https://img.shields.io/github/stars/frxbg/esp32-ups-gateway.svg?style=for-the-badge
+[stars-url]: https://github.com/frxbg/esp32-ups-gateway/stargazers
+[issues-shield]: https://img.shields.io/github/issues/frxbg/esp32-ups-gateway.svg?style=for-the-badge
+[issues-url]: https://github.com/frxbg/esp32-ups-gateway/issues
+[license-shield]: https://img.shields.io/github/license/frxbg/esp32-ups-gateway.svg?style=for-the-badge
+[license-url]: https://github.com/frxbg/esp32_ups_gateway/blob/main/LICENSE
 [ESP-IDF]: https://img.shields.io/badge/ESP--IDF-E7352C?style=for-the-badge&logo=espressif&logoColor=white
 [ESP-IDF-url]: https://docs.espressif.com/projects/esp-idf/en/latest/esp32/
 [C]: https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white
