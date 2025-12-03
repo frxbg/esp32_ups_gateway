@@ -24,9 +24,9 @@
     <br />
     <a href="https://raw.githack.com/frxbg/esp32_ups_gateway/refs/heads/main/assets/demo.html">View Demo</a>
     ·
-    <a href="#issues">Report Bug</a>
+    <a href="https://github.com/frxbg/esp32_ups_gateway/issues/new">Report Bug</a>
     ·
-    <a href="#issues">Request Feature</a>
+    <a href="https://github.com/frxbg/esp32_ups_gateway/issues/new">Request Feature</a>
   </p>
 </div>
 
