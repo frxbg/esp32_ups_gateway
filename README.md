@@ -6,6 +6,10 @@
 *** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
 -->
 [![Version][version-shield]][version-url]
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 
 <br />
@@ -50,7 +54,7 @@
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="https://github.com/frxbg/esp32_ups_gateway/blob/main/LICENSE">License</a></li>
+    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -59,7 +63,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![Product Screenshot](https://github.com/frxbg/esp32_ups_gateway/blob/main/assets/Dashboard_demo.png)
+![Product Screenshot](https://placehold.co/600x400/111827/38bdf8?text=Dashboard+Preview)
 
 There are many UPS monitoring solutions out there, but most require a dedicated PC or Raspberry Pi. The **ESP32 UPS Gateway** is a microcontroller-based solution that bridges the gap between your USB-connected UPS and your industrial or home automation network.
 
@@ -137,7 +141,7 @@ You will need the following hardware and software:
 
 The device hosts a Single Page Application (SPA) accessible via WiFi.
 
-1.  Connect to the Access Point: **SSID**: `UPS_Gateway_AP`, **Pass**: `admin1234`.
+1.  Connect to the Access Point: **SSID**: `UPS_Gateway_AP`, **Pass**: `frigotehnica`.
 2.  Navigate to `http://192.168.4.1`.
 3.  **Dashboard Tab**: View real-time gauges for Battery, Load, and Voltages.
 4.  **WiFi Tab**: Scan for local networks and connect the device to your home WiFi.
@@ -209,8 +213,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-frxbg - [@X](https://x.com/039873324e35400)
-
 Project Link: [https://github.com/frxbg/esp32-ups-gateway](https://github.com/frxbg/esp32-ups-gateway)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -237,7 +239,7 @@ Project Link: [https://github.com/frxbg/esp32-ups-gateway](https://github.com/fr
 [issues-shield]: https://img.shields.io/github/issues/frxbg/esp32-ups-gateway.svg?style=for-the-badge
 [issues-url]: https://github.com/frxbg/esp32-ups-gateway/issues
 [license-shield]: https://img.shields.io/github/license/frxbg/esp32-ups-gateway.svg?style=for-the-badge
-[license-url]: https://github.com/frxbg/esp32_ups_gateway/blob/main/LICENSE
+[license-url]: https://github.com/frxbg/esp32-ups-gateway/blob/master/LICENSE
 [ESP-IDF]: https://img.shields.io/badge/ESP--IDF-E7352C?style=for-the-badge&logo=espressif&logoColor=white
 [ESP-IDF-url]: https://docs.espressif.com/projects/esp-idf/en/latest/esp32/
 [C]: https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white
