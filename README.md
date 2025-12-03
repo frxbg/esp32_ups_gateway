@@ -6,7 +6,7 @@
 *** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
 -->
 [![Version][version-shield]][version-url]
-[![MIT License][license-shield]][license-url]
+[![MIT License][license-shield]][https://github.com/frxbg/esp32_ups_gateway/blob/main/LICENSE]
 
 <br />
 <div align="center">
