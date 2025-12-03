@@ -10,7 +10,7 @@
 
 <br />
 <div align="center">
-  <a href="https://github.com/frxbg/esp32-ups-gateway">
+  <a href="https://github.com/frxbg/esp32_ups_gateway">
     <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Battery.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -109,8 +109,8 @@ You will need the following hardware and software:
 
 1.  **Clone the repo**
     ```sh
-    git clone https://github.com/frxbg/esp32-ups-gateway.git
-    cd esp32-ups-gateway
+    git clone https://github.com/frxbg/esp32_ups_gateway.git
+    cd esp32_ups_gateway
     ```
 2.  **Set up environment** (if not already done)
     ```sh
@@ -182,7 +182,7 @@ Integrate with Home Assistant or Industrial PLCs.
 - [ ] Email/Telegram Notifications
 - [ ] Historical Data Logging (SD Card)
 
-See the [open issues](https://github.com/frxbg/esp32-ups-gateway/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/frxbg/esp32_ups_gateway/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -209,7 +209,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Project Link: [https://github.com/frxbg/esp32-ups-gateway](https://github.com/frxbg/esp32-ups-gateway)
+Project Link: [https://github.com/frxbg/esp32_ups_gateway](https://github.com/frxbg/esp32_ups_gateway)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -226,8 +226,8 @@ Project Link: [https://github.com/frxbg/esp32-ups-gateway](https://github.com/fr
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [version-shield]: https://img.shields.io/badge/version-1.0.0-blue.svg?style=for-the-badge
 [version-url]: #
-[license-shield]: https://img.shields.io/github/license/frxbg/esp32-ups-gateway.svg?style=for-the-badge
-[license-url]: https://github.com/frxbg/esp32-ups-gateway/blob/main/LICENSE
+[license-shield]: https://img.shields.io/github/license/frxbg/esp32_ups_gateway.svg?style=for-the-badge
+[license-url]: https://github.com/frxbg/esp32_ups_gateway/blob/main/LICENSE
 [ESP-IDF]: https://img.shields.io/badge/ESP--IDF-E7352C?style=for-the-badge&logo=espressif&logoColor=white
 [ESP-IDF-url]: https://docs.espressif.com/projects/esp-idf/en/latest/esp32/
 [C]: https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white
