@@ -14,7 +14,7 @@
     <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Battery.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">ESP32 UPS Gateway</h3>
+  <h3 align="center">ESP32-S3 UPS Gateway</h3>
 
   <p align="center">
     A professional industrial gateway to monitor CyberPower UPS devices via USB HID, ModbusRTU, and a modern Web Dashboard.
