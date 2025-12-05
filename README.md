@@ -224,7 +224,7 @@ Project Link: [https://github.com/frxbg/esp32_ups_gateway](https://github.com/fr
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[version-shield]: https://img.shields.io/badge/version-1.0.0-blue.svg?style=for-the-badge
+[version-shield]: https://img.shields.io/badge/version-1.0.1a-blue.svg?style=for-the-badge
 [version-url]: #
 [license-shield]: https://img.shields.io/github/license/frxbg/esp32_ups_gateway.svg?style=for-the-badge
 [license-url]: https://github.com/frxbg/esp32_ups_gateway/blob/main/LICENSE
